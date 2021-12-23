@@ -7,7 +7,7 @@ v_cadena VARCHAR2(300);
 BEGIN
     
     execute immediate 'truncate table T_CMP_CARD_DENIED_COND';
-    PKG_CMP_REQUIREMENT.MAIN;  
+    PKG_CMP_CARD_DENIED_COND.MAIN;  
     execute immediate 'truncate table ALS_DENIED_COND_STG '; --Solo para pruebas
     insert into ALS_DENIED_COND_STG 
     select 
