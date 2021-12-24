@@ -136,6 +136,30 @@
     </attributes>
   </connection>
   <connection>
+    <name>SIMAC-PRD</name>
+    <server>regal03.siman.com</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>PROD</database>
+    <port>1523</port>
+    <username>SIMAC</username>
+    <password>Encrypted 2be98afc86aa7f2e4840baf73d2c1ff8b</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1523</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>SIMANCOR</name>
     <server>&#x24;&#x7b;SIMANCOR.SERVER.IP&#x7d;</server>
     <type>AS&#x2f;400</type>
@@ -496,7 +520,7 @@
       <to>SEND_MAIL</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>

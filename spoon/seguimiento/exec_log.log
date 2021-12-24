@@ -1,0 +1,148 @@
+2021/12/13 15:26:12 - Kitchen - Start of run.
+ERROR 13-12 15:26:15,561 - Unable to register native library path ""
+2021/12/13 15:26:16 - CAMP_AUTOMATICAS_MAIN - Start of job execution
+2021/12/13 15:26:16 - CAMP_AUTOMATICAS_MAIN - Starting entry [Simple evaluation P_PAIS]
+2021/12/13 15:26:16 - CAMP_AUTOMATICAS_MAIN - Starting entry [TR_INIT_VARIABLES]
+2021/12/13 15:26:16 - TR_INIT_VARIABLES - Loading transformation from XML file [file:///filemanager/BIN/CREDITS/CAMP_AUTOMATICAS/SEGUIMIENTO/INIT_VARIABLES.ktr]
+2021/12/13 15:26:16 - INIT_VARIABLES - Dispatching started for transformation [INIT_VARIABLES]
+2021/12/13 15:26:16 - Get P_PAIS.0 - Finished processing (I=0, O=0, R=1, W=6, U=0, E=0)
+2021/12/13 15:26:16 - Set V_SUNNEL_USER.0 - Setting environment variables...
+2021/12/13 15:26:16 - Set V_SUNNEL_URL.0 - Setting environment variables...
+2021/12/13 15:26:16 - Set V_SUNNEL_URL.0 - Set variable V_SUNNEL_JDBC_URL to value [${SUNNEL.CAMP.SV.JDBC.URL}]
+2021/12/13 15:26:16 - Set V_SUNNEL_USER.0 - Set variable V_SUNNEL_USER to value [${SUNNEL.CAMP.SV.SIMAC.USER}]
+2021/12/13 15:26:16 - Set V_SUNNEL_PASS.0 - Setting environment variables...
+2021/12/13 15:26:16 - Set V_SUNNEL_PASS.0 - Set variable V_SUNNEL_PASS to value [${SUNNEL.CAMP.SV.SIMAC.PASS}]
+2021/12/13 15:26:16 - Generate Global Parameter Rows.0 - Finished processing (I=0, O=0, R=0, W=1, U=0, E=0)
+2021/12/13 15:26:16 - Set Global Parameters.0 - Setting environment variables...
+2021/12/13 15:26:16 - Set Global Parameters.0 - Set variable V_PENDING_DIR to value [/filemanager/CREDITS/CUSTOMER_NOTIF]
+2021/12/13 15:26:16 - Set Global Parameters.0 - Set variable V_LOGS_DIR to value [/filemanager/CREDITS/CUSTOMER_NOTIF/LOGS]
+2021/12/13 15:26:16 - Set Global Parameters.0 - Set variable V_SMTP_PASS to value [kwdXSolNtPMoFsBXKSgZDQ]
+2021/12/13 15:26:16 - Set Global Parameters.0 - Set variable V_HTML_MSG to value [<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head><body style=" font-family: Calibri;font-size: 16px; font-style: normal;"><p>Estimado(a) {NombreCliente}</p><p>Se le informa que su tarjeta <b>{Cadena} &nbsp; {texto_tipo_tarjeta}&nbsp;{Tarjeta}</b> ha realizado <b>{TipoTrx}</b> por {Monto} en <b>{Sucursal}</b>.</p><p>Cualquier consulta o información adicional, comuníquese al teléfono <b>{Contacto}</b>.</p></body></html>]
+2021/12/13 15:26:16 - Set Global Parameters.0 - Set variable V_EMAIL_SENDER to value [no-reply@simaninternet.com]
+2021/12/13 15:26:16 - Set Global Parameters.0 - Set variable V_NAME_SENDER to value [Notificaciones  {Cadena} ]
+2021/12/13 15:26:16 - Set Global Parameters.0 - Set variable V_ASUNTO to value [notificación de movimiento en su tarjeta  {Cadena} ]
+2021/12/13 15:26:16 - Set Global Parameters.0 - Set variable V_MANDRILL_URL to value [${SUNNEL.CAMP.MANDRILL.URL}]
+2021/12/13 15:26:16 - Set Global Parameters.0 - Set variable V_MANDRILL_KEY to value [${SUNNEL.CAMP.MANDRILL.KEY}]
+2021/12/13 15:26:16 - Set V_SUNNEL_SCHEMA.0 - Setting environment variables...
+2021/12/13 15:26:16 - Set V_SUNNEL_SCHEMA.0 - Set variable V_SUNNEL_SCHEMA to value [${SUNNEL.CAMP.SV.SCHEMA}]
+2021/12/13 15:26:16 - Set V_PAIS_CREDINTER.0 - Setting environment variables...
+2021/12/13 15:26:16 - Set V_PAIS_CREDINTER.0 - Set variable V_PAIS_CREDINTER to value [40000]
+2021/12/13 15:26:16 - Set V_MONEDA.0 - Setting environment variables...
+2021/12/13 15:26:16 - Set V_MONEDA.0 - Set variable V_MONEDA to value [USD <b>\$</b>]
+2021/12/13 15:26:16 - Define V_SUNNEL_JDBC_URL.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 15:26:16 - Define V_SUNNEL_USER.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 15:26:16 - Define V_SUNNEL_PASS.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 15:26:16 - Set Global Parameters.0 - Finished after 1 rows.
+2021/12/13 15:26:16 - Set Global Parameters.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 15:26:16 - Define Codigo Pais CREDINTER.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 15:26:16 - Define Simbolo Moneda.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 15:26:16 - Set V_SUNNEL_URL.0 - Finished after 1 rows.
+2021/12/13 15:26:16 - Set V_SUNNEL_URL.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 15:26:16 - Set V_SUNNEL_PASS.0 - Finished after 1 rows.
+2021/12/13 15:26:16 - Set V_SUNNEL_PASS.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 15:26:16 - Define V_SUNNEL_SCHEMA.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 15:26:16 - Set V_PAIS_CREDINTER.0 - Finished after 1 rows.
+2021/12/13 15:26:16 - Set V_MONEDA.0 - Finished after 1 rows.
+2021/12/13 15:26:16 - Set V_MONEDA.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 15:26:16 - Set V_PAIS_CREDINTER.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 15:26:16 - Set V_SUNNEL_USER.0 - Finished after 1 rows.
+2021/12/13 15:26:16 - Set V_SUNNEL_USER.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 15:26:16 - Set V_SUNNEL_SCHEMA.0 - Finished after 1 rows.
+2021/12/13 15:26:16 - Set V_SUNNEL_SCHEMA.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 15:26:16 - CAMP_AUTOMATICAS_MAIN - Starting entry [SEND_MAIL]
+2021/12/13 15:26:16 - SEND_MAIL - Loading transformation from XML file [file:///filemanager/BIN/CREDITS/CAMP_AUTOMATICAS/SEGUIMIENTO/send_mail.ktr]
+2021/12/13 15:26:16 - send_mail - Dispatching started for transformation [send_mail]
+2021/12/13 15:26:22 - Table input.0 - Finished reading query, closing connection.
+JOSE ADAN RIVAS
+2021/12/13 15:26:22 - Table input.0 - Finished processing (I=4, O=0, R=0, W=4, U=0, E=0)
+MACARIO PINEDA HDEZ
+SANDRA PATRICIA ESCOBAR
+RICARDO MARTINEZ
+2021/12/13 15:26:22 - Java Code - Json Request String.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2021/12/13 15:26:30 - [PREMORA] REST Client.0 - Finished processing (I=0, O=0, R=4, W=8, U=0, E=0)
+2021/12/13 15:26:31 - Filter rows.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2021/12/13 15:26:31 - Text file output.0 - Finished processing (I=0, O=5, R=4, W=4, U=0, E=0)
+2021/12/13 15:26:31 - Update.0 - Finished processing (I=4, O=0, R=4, W=4, U=4, E=0)
+2021/12/13 15:26:31 - CAMP_AUTOMATICAS_MAIN - Starting entry [Success]
+2021/12/13 15:26:31 - CAMP_AUTOMATICAS_MAIN - Finished job entry [Success] (result=[true])
+2021/12/13 15:26:31 - CAMP_AUTOMATICAS_MAIN - Finished job entry [SEND_MAIL] (result=[true])
+2021/12/13 15:26:31 - CAMP_AUTOMATICAS_MAIN - Finished job entry [TR_INIT_VARIABLES] (result=[true])
+2021/12/13 15:26:31 - CAMP_AUTOMATICAS_MAIN - Finished job entry [Simple evaluation P_PAIS] (result=[true])
+2021/12/13 15:26:31 - CAMP_AUTOMATICAS_MAIN - Job execution finished
+2021/12/13 15:26:31 - Kitchen - Finished!
+2021/12/13 15:26:31 - Kitchen - Start=2021/12/13 15:26:12.187, Stop=2021/12/13 15:26:31.054
+2021/12/13 15:26:31 - Kitchen - Processing ended after 18 seconds.
+2021/12/13 16:06:59 - Kitchen - Start of run.
+ERROR 13-12 16:07:02,497 - Unable to register native library path ""
+2021/12/13 16:07:02 - CAMP_AUTOMATICAS_MAIN - Start of job execution
+2021/12/13 16:07:02 - CAMP_AUTOMATICAS_MAIN - Starting entry [Simple evaluation P_PAIS]
+2021/12/13 16:07:02 - CAMP_AUTOMATICAS_MAIN - Starting entry [TR_INIT_VARIABLES]
+2021/12/13 16:07:02 - TR_INIT_VARIABLES - Loading transformation from XML file [file:///filemanager/BIN/CREDITS/CAMP_AUTOMATICAS/SEGUIMIENTO/INIT_VARIABLES.ktr]
+2021/12/13 16:07:02 - INIT_VARIABLES - Dispatching started for transformation [INIT_VARIABLES]
+2021/12/13 16:07:03 - Get P_PAIS.0 - Finished processing (I=0, O=0, R=1, W=6, U=0, E=0)
+2021/12/13 16:07:03 - Set V_SUNNEL_USER.0 - Setting environment variables...
+2021/12/13 16:07:03 - Set V_SUNNEL_USER.0 - Set variable V_SUNNEL_USER to value [${SUNNEL.CAMP.SV.SIMAC.USER}]
+2021/12/13 16:07:03 - Set V_SUNNEL_URL.0 - Setting environment variables...
+2021/12/13 16:07:03 - Set V_SUNNEL_URL.0 - Set variable V_SUNNEL_JDBC_URL to value [${SUNNEL.CAMP.SV.JDBC.URL}]
+2021/12/13 16:07:03 - Generate Global Parameter Rows.0 - Finished processing (I=0, O=0, R=0, W=1, U=0, E=0)
+2021/12/13 16:07:03 - Set Global Parameters.0 - Setting environment variables...
+2021/12/13 16:07:03 - Set Global Parameters.0 - Set variable V_PENDING_DIR to value [/filemanager/CREDITS/CUSTOMER_NOTIF]
+2021/12/13 16:07:03 - Set Global Parameters.0 - Set variable V_LOGS_DIR to value [/filemanager/CREDITS/CUSTOMER_NOTIF/LOGS]
+2021/12/13 16:07:03 - Set V_SUNNEL_PASS.0 - Setting environment variables...
+2021/12/13 16:07:03 - Set Global Parameters.0 - Set variable V_SMTP_PASS to value [kwdXSolNtPMoFsBXKSgZDQ]
+2021/12/13 16:07:03 - Set V_SUNNEL_PASS.0 - Set variable V_SUNNEL_PASS to value [${SUNNEL.CAMP.SV.SIMAC.PASS}]
+2021/12/13 16:07:03 - Set Global Parameters.0 - Set variable V_HTML_MSG to value [<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/></head><body style=" font-family: Calibri;font-size: 16px; font-style: normal;"><p>Estimado(a) {NombreCliente}</p><p>Se le informa que su tarjeta <b>{Cadena} &nbsp; {texto_tipo_tarjeta}&nbsp;{Tarjeta}</b> ha realizado <b>{TipoTrx}</b> por {Monto} en <b>{Sucursal}</b>.</p><p>Cualquier consulta o información adicional, comuníquese al teléfono <b>{Contacto}</b>.</p></body></html>]
+2021/12/13 16:07:03 - Set Global Parameters.0 - Set variable V_EMAIL_SENDER to value [no-reply@simaninternet.com]
+2021/12/13 16:07:03 - Set Global Parameters.0 - Set variable V_NAME_SENDER to value [Notificaciones  {Cadena} ]
+2021/12/13 16:07:03 - Set Global Parameters.0 - Set variable V_ASUNTO to value [notificación de movimiento en su tarjeta  {Cadena} ]
+2021/12/13 16:07:03 - Set Global Parameters.0 - Set variable V_MANDRILL_URL to value [${SUNNEL.CAMP.MANDRILL.URL}]
+2021/12/13 16:07:03 - Set Global Parameters.0 - Set variable V_MANDRILL_KEY to value [${SUNNEL.CAMP.MANDRILL.KEY}]
+2021/12/13 16:07:03 - Set V_SUNNEL_SCHEMA.0 - Setting environment variables...
+2021/12/13 16:07:03 - Set V_SUNNEL_SCHEMA.0 - Set variable V_SUNNEL_SCHEMA to value [${SUNNEL.CAMP.SV.SCHEMA}]
+2021/12/13 16:07:03 - Set V_PAIS_CREDINTER.0 - Setting environment variables...
+2021/12/13 16:07:03 - Set V_PAIS_CREDINTER.0 - Set variable V_PAIS_CREDINTER to value [40000]
+2021/12/13 16:07:03 - Set V_MONEDA.0 - Setting environment variables...
+2021/12/13 16:07:03 - Set V_MONEDA.0 - Set variable V_MONEDA to value [USD <b>\$</b>]
+2021/12/13 16:07:03 - Define V_SUNNEL_JDBC_URL.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 16:07:03 - Define V_SUNNEL_USER.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 16:07:03 - Define V_SUNNEL_SCHEMA.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 16:07:03 - Define Codigo Pais CREDINTER.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 16:07:03 - Define Simbolo Moneda.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 16:07:03 - Set V_SUNNEL_URL.0 - Finished after 1 rows.
+2021/12/13 16:07:03 - Set V_SUNNEL_URL.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 16:07:03 - Set V_SUNNEL_USER.0 - Finished after 1 rows.
+2021/12/13 16:07:03 - Set V_SUNNEL_USER.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 16:07:03 - Set Global Parameters.0 - Finished after 1 rows.
+2021/12/13 16:07:03 - Set Global Parameters.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 16:07:03 - Define V_SUNNEL_PASS.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 16:07:03 - Set V_SUNNEL_SCHEMA.0 - Finished after 1 rows.
+2021/12/13 16:07:03 - Set V_SUNNEL_SCHEMA.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 16:07:03 - Set V_PAIS_CREDINTER.0 - Finished after 1 rows.
+2021/12/13 16:07:03 - Set V_PAIS_CREDINTER.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 16:07:03 - Set V_MONEDA.0 - Finished after 1 rows.
+2021/12/13 16:07:03 - Set V_MONEDA.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 16:07:03 - Set V_SUNNEL_PASS.0 - Finished after 1 rows.
+2021/12/13 16:07:03 - Set V_SUNNEL_PASS.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2021/12/13 16:07:03 - CAMP_AUTOMATICAS_MAIN - Starting entry [SEND_MAIL]
+2021/12/13 16:07:03 - SEND_MAIL - Loading transformation from XML file [file:///filemanager/BIN/CREDITS/CAMP_AUTOMATICAS/SEGUIMIENTO/send_mail.ktr]
+2021/12/13 16:07:03 - send_mail - Dispatching started for transformation [send_mail]
+2021/12/13 16:07:05 - Table input.0 - Finished reading query, closing connection.
+JOSE ROBERTO PEREZ
+2021/12/13 16:07:05 - Table input.0 - Finished processing (I=4, O=0, R=0, W=4, U=0, E=0)
+JACQUELINE SERPAS
+KRISIA IBERICA PINEDA 
+MARGARITA DE GUARDADO
+2021/12/13 16:07:05 - Java Code - Json Request String.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2021/12/13 16:07:16 - [PREMORA] REST Client.0 - Finished processing (I=0, O=0, R=4, W=8, U=0, E=0)
+2021/12/13 16:07:16 - Filter rows.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2021/12/13 16:07:16 - Text file output.0 - Finished processing (I=0, O=5, R=4, W=4, U=0, E=0)
+2021/12/13 16:07:16 - Update.0 - Finished processing (I=4, O=0, R=4, W=4, U=4, E=0)
+2021/12/13 16:07:16 - CAMP_AUTOMATICAS_MAIN - Starting entry [Success]
+2021/12/13 16:07:16 - CAMP_AUTOMATICAS_MAIN - Finished job entry [Success] (result=[true])
+2021/12/13 16:07:16 - CAMP_AUTOMATICAS_MAIN - Finished job entry [SEND_MAIL] (result=[true])
+2021/12/13 16:07:16 - CAMP_AUTOMATICAS_MAIN - Finished job entry [TR_INIT_VARIABLES] (result=[true])
+2021/12/13 16:07:16 - CAMP_AUTOMATICAS_MAIN - Finished job entry [Simple evaluation P_PAIS] (result=[true])
+2021/12/13 16:07:16 - CAMP_AUTOMATICAS_MAIN - Job execution finished
+2021/12/13 16:07:16 - Kitchen - Finished!
+2021/12/13 16:07:16 - Kitchen - Start=2021/12/13 16:06:59.581, Stop=2021/12/13 16:07:16.449
+2021/12/13 16:07:16 - Kitchen - Processing ended after 16 seconds.
