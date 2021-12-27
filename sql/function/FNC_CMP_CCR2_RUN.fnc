@@ -8,7 +8,7 @@ BEGIN
     
        execute immediate 'truncate table T_CMP_INACTIVITY_MONTHS';
     PKG_CMP_INACTIVITY_MONTHS.MAIN;  
-    
+    execute immediate 'truncate table als_cmp_invative_ccr2_stg';-- solo para pruebas 
     insert into als_cmp_invative_ccr2_stg
     select als_cmp_notif_approv_stg_seq.nextval notification_id,
      notification_campaign campaign_id, id_notification id_setup, 

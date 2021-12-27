@@ -7,7 +7,8 @@ v_cadena VARCHAR2(300);
 BEGIN
     
     execute immediate 'truncate table t_cmp_requirement';
-    PKG_CMP_REQUIREMENT.MAIN;  
+    PKG_CMP_REQUIREMENT.MAIN; 
+    execute immediate 'truncate table als_seguimiento_stg';-- solo para pruebas  
     insert into als_seguimiento_stg
     select 
      notification_campaign campaign_id, id_notification, 
