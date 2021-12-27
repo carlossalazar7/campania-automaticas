@@ -20,7 +20,7 @@ CREATE OR REPLACE package body PKG_CMP_CARD_DENIED_COND as
             --join T_GCARD card on ap.cardid = card.cardid
             join T_GPRODUCT prod on prod.productid = ap.productid
             join T_GCUSTOMER cus on cus.customerid = ap.customerid
-            where ap.laststatusdate = trunc(sysdate - G_DAYS_RANGE_PARAM - p_days)
+            where ap.laststatusdate = trunc(g_date - p_days)
             and ap.productid in (select column_value from table(pkg_cmp_common.get_parameter_as_list('CREDIT_PRODUCT_IDS')))
             and ap.status = p_status
             ;
@@ -78,7 +78,7 @@ CREATE OR REPLACE package body PKG_CMP_CARD_DENIED_COND as
         CURSOR c_inputdata IS
             select 
                 ap.applicationid,
-                ap.laststatusdate,
+                rj.CONDITIONDATE,
                 cus.customerid,
                 cus.aliasname,
                 (select card.cardid 
@@ -90,12 +90,15 @@ CREATE OR REPLACE package body PKG_CMP_CARD_DENIED_COND as
                 ) as cardid,
                 ap.productid,
                 prod.description as product_desc,
-                ap.status
+                ap.status,
+                APV.DESCRIPTION as cond_reason
             from T_GAPPLICATION ap
             --join T_GCARD card on ap.cardid = card.cardid
             join T_GPRODUCT prod on prod.productid = ap.productid
             join T_GCUSTOMER cus on cus.customerid = ap.customerid
-            where ap.laststatusdate = trunc(sysdate - G_DAYS_RANGE_PARAM - p_days)
+            join T_GAPPLICATIONCONDITIONCODE rj on rj.APPLICATIONID = ap.APPLICATIONID
+            join T_GAPPROVALCONDREASONCODE apv on APV.APPROVALCONDREASONCODEID = RJ.APPROVALCONDREASONCODEID            
+            where rj.CONDITIONDATE = trunc(g_date - p_days)
             and ap.productid in (select column_value from table(pkg_cmp_common.get_parameter_as_list('CREDIT_PRODUCT_IDS')))
             and ap.status not in ('I','D')
             and exists(
@@ -133,11 +136,12 @@ CREATE OR REPLACE package body PKG_CMP_CARD_DENIED_COND as
                 email,
                 phonenumber,
                 productid,
-                product_desc
+                product_desc,
+                cond_reason
             ) VALUES (
                 p_process_id,
                 row_inputdata(i).applicationid,
-                row_inputdata(i).laststatusdate,
+                row_inputdata(i).CONDITIONDATE,
                 p_days,
                 'C',
                 row_inputdata(i).customerid,
@@ -145,7 +149,8 @@ CREATE OR REPLACE package body PKG_CMP_CARD_DENIED_COND as
                 v_email,
                 v_phone,
                 row_inputdata(i).productid,
-                row_inputdata(i).product_desc
+                row_inputdata(i).product_desc,
+                row_inputdata(i).cond_reason
             );
         END LOOP;
         commit;
@@ -159,8 +164,8 @@ CREATE OR REPLACE package body PKG_CMP_CARD_DENIED_COND as
     procedure load_params as
     begin
         G_DAYS_RANGE_PARAM := pkg_cmp_common.get_parameter_as_number('DAYS_RANGE_CARD_DENIED_COND');
-    exception when no_data_found then
-        G_DAYS_RANGE_PARAM := 1;
+        g_date := pkg_cmp_common.get_fecha_sunnel() - G_DAYS_RANGE_PARAM;
+        dbms_output.put_line('load_params - g_date = ' || g_date);
     end;
     
     

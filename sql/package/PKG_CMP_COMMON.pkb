@@ -76,6 +76,7 @@ CREATE OR REPLACE package body pkg_cmp_common as
             exec_start_time,
             data_range_start,
             data_range_end,
+            sunnel_date,
             days_range
         ) VALUES (
             p_process_id,
@@ -85,8 +86,10 @@ CREATE OR REPLACE package body pkg_cmp_common as
             p_exec_start_time,
             p_data_range_start,
             p_data_range_end,
+            get_fecha_sunnel(),
             p_days_range
         );
+        commit;
     end;
     
     procedure update_process(

@@ -14,7 +14,7 @@ CREATE OR REPLACE package body PKG_CMP_INACTIVITY_INITIAL as
             join T_GCUSTOMER cus on cus.customerid = card.customerid
             where card.productid in (select column_value from table(pkg_cmp_common.get_parameter_as_list('CREDIT_PRODUCT_IDS')))
             and card.deliveredind = 'T'
-            and card.deliveredtime between trunc(g_date - p_days - 7) and trunc(g_date - p_days)
+            and card.deliveredtime between trunc(g_date - p_days - 7) and trunc(g_date - (p_days - 1))
             --and trim(to_char(card.deliveredtime, 'DAY')) = 'MONDAY'
             and not exists(
                 select 1 
