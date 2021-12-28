@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION       FNC_CMP_DEN_COND_RUN
+CREATE OR REPLACE FUNCTION SIMAC.FNC_CMP_DEN_COND_RUN
 RETURN VARCHAR2
 IS
 v_cadena VARCHAR2(300);
@@ -12,7 +12,7 @@ BEGIN
     insert into ALS_DENIED_COND_STG 
     select 
      notification_campaign campaign_id, id_notification, 
-     tcr.aliasname,tcr.email,tcr.applicationid,acn.notification_string, DECODE(tcr.status,'D','Denegada','Condicionada') status,null stage,  als_seguimiento_stg_seq.nextval notification_id, tcr.process_id, 'P' status, sysdate,sysdate
+     tcr.aliasname,tcr.email,tcr.applicationid,acn.notification_string, tcr.COND_REASON, DECODE(tcr.status,'D','Denegada','Condicionada') status,null stage,  als_seguimiento_stg_seq.nextval notification_id, tcr.process_id, 'P' status, sysdate,sysdate
     from ALS_CAMPAIGN_DENE_COND  acn, als_campaign ac, T_CMP_CARD_DENIED_COND tcr
     where ac.id_campaign = acn.notification_campaign
     and decode(tcr.productid,10020,'PRISMA MODA','CREDISIMAN') = acn.notification_string
@@ -23,5 +23,4 @@ BEGIN
 
 
 END;
-
 /
