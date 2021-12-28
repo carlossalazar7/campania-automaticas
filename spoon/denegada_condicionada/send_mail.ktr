@@ -121,6 +121,30 @@
     </attributes>
   </connection>
   <connection>
+    <name>SIMAC-PRD</name>
+    <server>regal03.siman.com</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>PROD</database>
+    <port>1523</port>
+    <username>SIMAC</username>
+    <password>Encrypted 2be98afc86aa7f2e4840baf73d2c1ff8b</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1523</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>SUNNEL_CAMP_SIMAC</name>
     <server>&#x24;&#x7b;V_SUNNEL_IP&#x7d;</server>
     <type>GENERIC</type>
@@ -378,7 +402,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
            <schema_name/>
            </partitioning>
     <connection>SUNNEL_CAMP_SIMAC</connection>
-    <sql>select a.process_id,&#xd;&#xa;a.notification_id CORREL_NOTIF, &#xd;&#xa;a.id_campaign, &#xd;&#xa;a.customer_name NOMBRE_CLIENTE, &#xd;&#xa;--a.remit_to &#xd;&#xa;&#x27;luis_henriquez&#x40;consiti.com&#x27; CORREOELECTRONICO,&#xd;&#xa;a.ticket_num, &#xd;&#xa;a.product_name, &#xd;&#xa;a.status, &#xd;&#xa;a.stage,&#xd;&#xa; a.process_status,&#xd;&#xa; a.creation_date, &#xd;&#xa;&#x27;P&#x27; new_status,&#xd;&#xa;&#x27;200&#x27; success_code,&#xd;&#xa; replace&#x28;c.campaign_send_name,&#x27;&#x7b;PRODUCT_NAME&#x7d;&#x27;,trim&#x28;a.product_name&#x29;&#x7c;&#x7c;&#x27; &#x27;&#x29; NAME_SENDER,&#xd;&#xa; c.campaign_email_name DIR_SENDER, &#xd;&#xa; replace&#x28;c.campaign_subject,&#x27;&#x7b;CUSTOMER_NAME&#x7d;&#x27;, a.customer_name&#x29; ASUNTO, &#xd;&#xa; c.campaign_template_label MANDRILL_TAG, &#xd;&#xa; replace&#x28;&#xd;&#xa; 	replace&#x28;    &#xd;&#xa; 	   replace&#x28;&#xd;&#xa;         replace&#x28;D.template_body, &#x27;&#x7b;CUSTOMER_NAME&#x7d;&#x27;, a.customer_name&#x29;,&#xd;&#xa;    	&#x27;&#x7b;TICKET_NUM&#x7d;&#x27;, a.ticket_num&#x29;,&#xd;&#xa;    	&#x27;&#x7b;PRODUCT_NAME&#x7d;&#x27;, a.product_name&#x29;,&#xd;&#xa;		&#x27;&#x7b;STATUS&#x7d;&#x27;,a.status&#x29; PLANTILLA_HTML,&#xd;&#xa; &#x27;&#x24;&#x7b;V_MANDRILL_KEY&#x7d;&#x27; MANDRILL_API_KEY&#xd;&#xa; from ALS_DENIED_COND_STG a, ALS_CAMPAIGN_DENE_COND b, als_campaign c, ALS_CMP_EMAIL_TEMPLATE d&#xd;&#xa;where c.id_campaign &#x3d; b.notification_campaign&#xd;&#xa;and b.id_notification &#x3d; a.id_setup&#xd;&#xa;and b.notification_enable &#x3d; &#x27;S&#x27;&#xd;&#xa;and b.template_id &#x3d; d.template_id&#xd;&#xa;and a.process_status &#x3d; &#x27;P&#x27; and rownum&#x3c;5&#xd;&#xa;&#xd;&#xa;</sql>
+    <sql>select a.process_id,&#xd;&#xa;a.notification_id CORREL_NOTIF, &#xd;&#xa;a.id_campaign, &#xd;&#xa;a.customer_name NOMBRE_CLIENTE, &#xd;&#xa;--a.remit_to &#xd;&#xa;&#x27;luis_henriquez&#x40;consiti.com&#x27; CORREOELECTRONICO,&#xd;&#xa;a.ticket_num, &#xd;&#xa;a.product_name, &#xd;&#xa;a.status, &#xd;&#xa;a.stage,&#xd;&#xa; a.process_status,&#xd;&#xa; a.creation_date, &#xd;&#xa;&#x27;P&#x27; new_status,&#xd;&#xa;&#x27;200&#x27; success_code,&#xd;&#xa; replace&#x28;c.campaign_send_name,&#x27;&#x7b;PRODUCT_NAME&#x7d;&#x27;,trim&#x28;a.product_name&#x29;&#x7c;&#x7c;&#x27; &#x27;&#x29; NAME_SENDER,&#xd;&#xa; c.campaign_email_name DIR_SENDER, &#xd;&#xa; replace&#x28;c.campaign_subject,&#x27;&#x7b;CUSTOMER_NAME&#x7d;&#x27;, a.customer_name&#x29; ASUNTO, &#xd;&#xa; c.campaign_template_label MANDRILL_TAG, &#xd;&#xa; replace&#x28;&#xd;&#xa;  replace&#x28;&#xd;&#xa; 	replace&#x28;    &#xd;&#xa; 	   replace&#x28;&#xd;&#xa;         replace&#x28;D.template_body, &#x27;&#x7b;CUSTOMER_NAME&#x7d;&#x27;, a.customer_name&#x29;,&#xd;&#xa;    	&#x27;&#x7b;TICKET_NUM&#x7d;&#x27;, a.ticket_num&#x29;,&#xd;&#xa;    	&#x27;&#x7b;PRODUCT_NAME&#x7d;&#x27;, a.product_name&#x29;,&#xd;&#xa;		&#x27;&#x7b;STATUS&#x7d;&#x27;,a.status&#x29;,&#xd;&#xa;        &#x27;&#x7b;COND_REASON&#x7d;&#x27;,a.COND_REASON&#x29; PLANTILLA_HTML,&#xd;&#xa; &#x27;&#x24;&#x7b;V_MANDRILL_KEY&#x7d;&#x27; MANDRILL_API_KEY&#xd;&#xa; from ALS_DENIED_COND_STG a, ALS_CAMPAIGN_DENE_COND b, als_campaign c, ALS_CMP_EMAIL_TEMPLATE d&#xd;&#xa;where c.id_campaign &#x3d; b.notification_campaign&#xd;&#xa;and b.id_notification &#x3d; a.id_setup&#xd;&#xa;and b.notification_enable &#x3d; &#x27;S&#x27;&#xd;&#xa;and b.template_id &#x3d; d.template_id&#xd;&#xa;and a.process_status &#x3d; &#x27;P&#x27; and rownum&#x3c;5&#xd;&#xa;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
