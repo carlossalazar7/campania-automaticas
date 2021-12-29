@@ -3,7 +3,7 @@ CREATE OR REPLACE package body       PKG_CMP_INACTIVITY_MONTHS as
     procedure inactivity_by_months(p_process_id number, p_months number) as
         CURSOR c_inputdata IS
             -- inserta duplicados
-            select /*+index(do T_GDEBITOPERATION_INDICEPREA1)*/
+            select 
                 cus.customerid,
                 card.deliveredtime,
                 do.operationdate as last_purchase_date,
@@ -13,28 +13,45 @@ CREATE OR REPLACE package body       PKG_CMP_INACTIVITY_MONTHS as
                 prod.description as product_desc
             from T_GCARD card 
             join T_GPRODUCT prod on prod.productid = card.productid 
-                                and card.deliveredind = 'T' 
-                                and card.closedind = 'F' 
-                                and card.productid in (select column_value+0 from table(simac.pkg_cmp_common.get_parameter_as_list('CREDIT_PRODUCT_IDS')))
             join T_GCUSTOMER cus on cus.customerid = card.customerid
+            join T_GACCOUNT acc on acc.cardid = card.cardid
+            join T_GCREDITLINE cl on cl.creditlineid = acc.accountid
             join T_GDEBITOPERATION do on do.cardid = card.cardid and do.OPERATIONTYPEID in (select column_value+0 from table(simac.pkg_cmp_common.get_parameter_as_list('PURCHASE_OP_TYPES')))
                                       and do.operationdate between trunc(add_months(g_date, -p_months)-1) and trunc(add_months(g_date, -p_months)) --tuvo compras hace exactamente 6 meses, el -7 es para traer data de toda la semana pq el proceso corre solo los lunes
             where 1=1
             --and card.deliveredtime between trunc(sysdate - 365 - 15 - 7) and trunc(sysdate - 365 - 15)
             --and trim(to_char(card.deliveredtime, 'DAY')) = 'MONDAY'
-            and not exists( --no tiene compras desde hace 6 meses a la fecha
-                select /*+index(do T_GDEBITOPERATION_INDICEPREA1)*/ 1 
+            and card.deliveredind = 'T' 
+            and card.closedind = 'F' 
+            and card.lostcardind='F' 
+            and card.riskconditionind='F'
+            AND cl.ACCELERATEDBALANCEIND='F'
+            AND cl.BADDEBTIND='F'
+            AND cl.UNCOLLECTABLEIND='F'
+            and card.productid in (select column_value+0 from table(simac.pkg_cmp_common.get_parameter_as_list('CREDIT_PRODUCT_IDS')))
+            
+            and not exists ( --no tiene compras desde hace 6 meses a la fecha
+                select 1 
                 from T_GDEBITOPERATION do2
                 where do2.OPERATIONTYPEID in (select column_value+0 from table(simac.pkg_cmp_common.get_parameter_as_list('PURCHASE_OP_TYPES')))
                 and do2.cardid = card.cardid
                 and do2.operationdate between trunc(add_months(g_date, -p_months)) and trunc(g_date)
             )
+            /*and do.operationdate = ( --no tiene compras desde hace 6 meses a la fecha
+                select max(do2.operationdate)
+                from T_GDEBITOPERATION do2
+                where do2.OPERATIONTYPEID in (select column_value+0 from table(simac.pkg_cmp_common.get_parameter_as_list('PURCHASE_OP_TYPES')))
+                and do2.cardid = card.cardid
+                --and do2.creditlineid = cl.creditlineid
+                and do2.operationdate between trunc(add_months(g_date, -p_months)-1) and trunc(g_date)
+            )*/
             ;
         TYPE tbl_inputdata IS TABLE OF c_inputdata%ROWTYPE;
         row_inputdata tbl_inputdata;
         v_email varchar2(100);
         v_phone varchar2(100);
         v_already_exists number;
+        v_count number := 0;
     begin
         dbms_output.put_line('---------------------- inactivity_by_months - Months:'||p_months||' - start process_id:'||p_process_id||' ----------------------');
         OPEN c_inputdata;
@@ -55,7 +72,7 @@ CREATE OR REPLACE package body       PKG_CMP_INACTIVITY_MONTHS as
             FROM DUAL;
 
             IF v_already_exists IS NULL THEN
-                dbms_output.put_line(row_inputdata(i).customerid || ' - ' || row_inputdata(i).aliasname);
+                --dbms_output.put_line(row_inputdata(i).customerid || ' - ' || row_inputdata(i).aliasname);
                 INSERT INTO T_CMP_INACTIVITY_MONTHS (
                     process_id,
                     customerid,
@@ -79,10 +96,11 @@ CREATE OR REPLACE package body       PKG_CMP_INACTIVITY_MONTHS as
                     row_inputdata(i).productid,
                     row_inputdata(i).product_desc
                 );
+                v_count := v_count + 1;
             END IF;    
         END LOOP;
         commit;
-        dbms_output.put_line('inactivity_by_months - Months:'||p_months||' - end');    
+        dbms_output.put_line('inactivity_by_months - Months:'||p_months||' - end - '||v_count);    
     end;
 
 
