@@ -16,7 +16,7 @@ BEGIN
     from ALS_CAMPAIGN_DENE_COND  acn, als_campaign ac, T_CMP_CARD_DENIED_COND tcr
     where ac.id_campaign = acn.notification_campaign
     and decode(tcr.productid,10020,'PRISMA MODA','CREDISIMAN') = acn.notification_string
-    and tcr.status = decode(acn.status_indicator,'C','I',acn.status_indicator);  
+    and tcr.status = acn.status_indicator;  
     v_cadena := 'Procedimiento ejecutado satisfactoriamente';
     RETURN v_cadena;
  
