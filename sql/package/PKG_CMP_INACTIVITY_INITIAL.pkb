@@ -72,29 +72,33 @@ CREATE OR REPLACE package body PKG_CMP_INACTIVITY_INITIAL as
     
     procedure main as
         cursor c_config is
-            SELECT id_notification, notification_date_buy 
+            SELECT DISTINCT notification_date_buy 
             FROM als_campaign_notific_inac_one 
-            WHERE notification_string = 'CREDISIMAN' and notification_enable = 'S'; 
+            WHERE notification_enable = 'S'; 
         TYPE tbl_config IS TABLE OF c_config%ROWTYPE;
         row_config tbl_config;
         process_id number;
     begin
         load_params();
+
+        pkg_cmp_common.insert_process(process_id, 
+              g_campaign_type, 
+              pkg_cmp_common.G_STATUS_PROCESSING,
+              g_date,
+              g_date,
+              G_DAYS_RANGE_PARAM);
+
+
         OPEN c_config;
         FETCH c_config BULK COLLECT INTO row_config;
         FOR i IN 1 .. row_config.COUNT 
         LOOP
             BEGIN
-                pkg_cmp_common.insert_process(process_id, 
-                      g_campaign_type, 
-                      pkg_cmp_common.G_STATUS_PROCESSING,
-                      g_date,
-                      g_date,
-                      G_DAYS_RANGE_PARAM);
                 inactivity_initial(process_id, row_config(1).notification_date_buy);
-                pkg_cmp_common.update_process(process_id, pkg_cmp_common.G_STATUS_COMPLETED);
             END;
         END LOOP;
+        pkg_cmp_common.update_process(process_id, pkg_cmp_common.G_STATUS_COMPLETED);
+        commit;
     end main;
 
 end PKG_CMP_INACTIVITY_INITIAL;

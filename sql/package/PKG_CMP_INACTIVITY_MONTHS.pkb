@@ -3,7 +3,7 @@ CREATE OR REPLACE package body       PKG_CMP_INACTIVITY_MONTHS as
     procedure inactivity_by_months(p_process_id number, p_months number) as
         CURSOR c_inputdata IS
             -- inserta duplicados
-            select 
+            select /* leading(card acc cl do) use_nl(card prod cus acc cl do) */
                 cus.customerid,
                 card.deliveredtime,
                 do.operationdate as last_purchase_date,
