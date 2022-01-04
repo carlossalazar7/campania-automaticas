@@ -61,14 +61,14 @@ CREATE OR REPLACE package body PKG_CMP_BIENVENIDA as
         begin
             -- usar la fecha hora de ultima ejecucion como filtro inicial de fecha
             SELECT data_range_end INTO v_prev_starttime 
-            FROM (SELECT data_range_end, row_number()over(order by data_range_end desc) as rn FROM t_cmp_process WHERE campaign_type = G_CAMPAIGN_TYPE)
+            FROM (SELECT data_range_end, row_number()over(order by data_range_end desc) as rn FROM t_cmp_process WHERE campaign_type = G_CAMPAIGN_TYPE AND trunc(data_range_end) = (pkg_cmp_common.get_fecha_sunnel() - G_DAYS_RANGE_PARAM))
             WHERE rn=1;
             
-            g_time_from := v_prev_starttime - G_DAYS_RANGE_PARAM;
+            g_time_from := v_prev_starttime;
             g_time_to   := pkg_cmp_common.get_fecha_hora_sunnel() - G_DAYS_RANGE_PARAM;
             dbms_output.put_line('load_params - in starttime - ' || g_time_from || ' to ' || g_time_to);
         exception when no_data_found then
-            g_time_from := pkg_cmp_common.get_fecha_sunnel() - G_DAYS_RANGE_PARAM;
+            g_time_from := pkg_cmp_common.get_fecha_sunnel() - 6/24 - G_DAYS_RANGE_PARAM; -- si no hay data de hoy, usar 6pm dia anterior
             g_time_to   := pkg_cmp_common.get_fecha_hora_sunnel() - G_DAYS_RANGE_PARAM;
             dbms_output.put_line('load_params - in exception - ' || g_time_from || ' to ' || g_time_to);
         end;
