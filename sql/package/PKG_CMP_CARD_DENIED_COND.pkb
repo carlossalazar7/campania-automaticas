@@ -174,33 +174,40 @@ CREATE OR REPLACE package body PKG_CMP_CARD_DENIED_COND as
     
     procedure main as
         cursor c_config is
-            SELECT id_notification_aprov, notification_authorization 
-            FROM ALS_CAMPAIGN_NOTIFIC_APROV 
-            WHERE notification_string = 'CREDISIMAN' and notification_enable = 'S'; 
+            SELECT distinct status_indicator, notification_sequence 
+            FROM ALS_CAMPAIGN_DENE_COND
+            WHERE notification_enable = 'S'; 
         TYPE tbl_config IS TABLE OF c_config%ROWTYPE;
         row_config tbl_config;
         process_id number;
     begin
         load_params();
-        --OPEN c_config;
-        --FETCH c_config BULK COLLECT INTO row_config;
-        --FOR i IN 1 .. row_config.COUNT 
-        --LOOP
-        --    BEGIN
-                pkg_cmp_common.insert_process(process_id, 
-                      g_campaign_type, 
-                      pkg_cmp_common.G_STATUS_PROCESSING,
-                      g_date,
-                      g_date,
-                      G_DAYS_RANGE_PARAM);
-                cards_denied(process_id, 'D', 1);
-                cards_conditioned(process_id, 1);
-                cards_conditioned(process_id, 8);
-                cards_conditioned(process_id, 15);
-                pkg_cmp_common.update_process(process_id, pkg_cmp_common.G_STATUS_COMPLETED);
-                commit;
-        --    END;
-        --END LOOP;
+
+        pkg_cmp_common.insert_process(process_id, 
+              g_campaign_type, 
+              pkg_cmp_common.G_STATUS_PROCESSING,
+              g_date,
+              g_date,
+              G_DAYS_RANGE_PARAM);
+
+        OPEN c_config;
+        FETCH c_config BULK COLLECT INTO row_config;
+        FOR i IN 1 .. row_config.COUNT 
+        LOOP
+            BEGIN
+
+                IF row_config(i).status_indicator = 'D' THEN
+                    cards_denied(process_id, 'D', row_config(i).notification_sequence);
+                ELSIF row_config(i).status_indicator = 'C' THEN
+                    cards_conditioned(process_id, row_config(i).notification_sequence);
+                END IF;
+                
+            END;
+        END LOOP;
+        
+        pkg_cmp_common.update_process(process_id, pkg_cmp_common.G_STATUS_COMPLETED);
+        commit;
+        
     end main;
 
 end PKG_CMP_CARD_DENIED_COND;
