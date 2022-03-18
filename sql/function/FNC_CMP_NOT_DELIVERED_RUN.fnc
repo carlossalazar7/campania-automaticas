@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION       FNC_CMP_NOT_DELIVERED_RUN
+/* Formatted on 17/3/2022 18:10:11 (QP5 v5.215.12089.38647) */
+CREATE OR REPLACE FUNCTION SIMAC.FNC_CMP_NOT_DELIVERED_RUN
    RETURN VARCHAR2
 IS
    v_cadena   VARCHAR2 (300);
@@ -7,7 +8,7 @@ BEGIN
 
    pkg_cmp_card_not_delivered.MAIN;
 
-   EXECUTE IMMEDIATE 'truncate table als_cmp_notif_approv_stg';
+   --EXECUTE IMMEDIATE 'truncate table als_cmp_notif_approv_stg'; --solo para pruebas
 
    INSERT INTO als_cmp_notif_approv_stg
       SELECT als_cmp_notif_approv_stg_seq.NEXTVAL notification_id,
@@ -33,5 +34,4 @@ BEGIN
    v_cadena := 'Procedimiento ejecutado satisfactoriamente';
    RETURN v_cadena;
 END;
-
 /
